@@ -49,49 +49,49 @@ model = create_model()
 print(model.summary())
 
 # train the model  
-hist = model.fit(train_x, train_y, epochs=200, validation_data=[test_x, test_y], batch_size=4)
+hist = model.fit(train_x, train_y, epochs=300, validation_data=[test_x, test_y], batch_size=32)
 
 # evaluate model, test data may differ from validation data
-evaluate = model.evaluate(test_x, test_y, batch_size=4)
+evaluate = model.evaluate(test_x, test_y, batch_size=32)
 print(evaluate)    
 
 # for plotting
-fig, axs = plt.subplots(nrows=1, ncols=2, constrained_layout=True)
-ax = axs[0]
-ax.plot(hist.history['loss'], label='train')
-ax.plot(hist.history['val_loss'], label='val')
-ax.legend()
-ax.set_ylabel('loss')
-ax.set_xlabel('epochs')
-ax = axs[1] 
-ax.plot(hist.history['acc'], label='train')
-ax.plot(hist.history['val_acc'], label='val')
-ax.legend()
-ax.set_ylabel('accuracy')
-ax.set_xlabel('epochs')
-plt.show()
+#fig, axs = plt.subplots(nrows=1, ncols=2, constrained_layout=True)
+#ax = axs[0]
+#ax.plot(hist.history['loss'], label='train')
+#ax.plot(hist.history['val_loss'], label='val')
+#ax.legend()
+#ax.set_ylabel('loss')
+#ax.set_xlabel('epochs')
+#ax = axs[1] 
+#ax.plot(hist.history['acc'], label='train')
+#ax.plot(hist.history['val_acc'], label='val')
+#ax.legend()
+#ax.set_ylabel('accuracy')
+#ax.set_xlabel('epochs')
+#plt.show()
 
-# predicting emotion of audio test data from the model  
-predict = model.predict(test_x,batch_size=4)
-emotions=['neutral', 'calm', 'happy', 'sad', 'angry', 'fearful', 'disgust', 'surprised']  
+## predicting emotion of audio test data from the model  
+#predict = model.predict(test_x,batch_size=4)
+#emotions=['neutral', 'calm', 'happy', 'sad', 'angry', 'fearful', 'disgust', 'surprised']  
 
-# predicted emotions from the test set  
-y_pred = np.argmax(predict, 1)  
-predicted_emo = []   
-for i in range(0,test_y.shape[0]):  
-    emo = emotions[y_pred[i]]  
-    predicted_emo.append(emo)
-    
-actual_emo = []  
-y_true = np.argmax(test_y, 1)  
-for i in range(0,test_y.shape[0]):  
-    emo = emotions[y_true[i]]  
-    actual_emo.append(emo)
-        
-# generate the confusion matrix  
-cm = confusion_matrix(actual_emo, predicted_emo)  
-index = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']  
-columns = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']  
-cm_df = pd.DataFrame(cm, index, columns)                      
-plt.figure(figsize=(10,6))  
-sns.heatmap(cm_df, annot=True)
+## predicted emotions from the test set  
+#y_pred = np.argmax(predict, 1)  
+#predicted_emo = []   
+#for i in range(0,test_y.shape[0]):  
+#    emo = emotions[y_pred[i]]  
+#    predicted_emo.append(emo)
+#    
+#actual_emo = []  
+#y_true = np.argmax(test_y, 1)  
+#for i in range(0,test_y.shape[0]):  
+#    emo = emotions[y_true[i]]  
+#    actual_emo.append(emo)
+#        
+## generate the confusion matrix  
+#cm = confusion_matrix(actual_emo, predicted_emo)  
+#index = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']  
+#columns = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']  
+#cm_df = pd.DataFrame(cm, index, columns)                      
+#plt.figure(figsize=(10,6))  
+#sns.heatmap(cm_df, annot=True)
