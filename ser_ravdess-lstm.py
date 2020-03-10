@@ -29,10 +29,10 @@ checkpointer = ModelCheckpoint(filepath='/tmp/weights.hdf5', verbose=1, save_bes
 def create_model():  
     model = Sequential()
     model.add(BatchNormalization(axis=-1, input_shape=(1, 193)))
-    model.add(GRU(n_dim, return_sequences=True, dropout=0.1, #input_shape=(1, 193),
+    model.add(LSTM(n_dim, return_sequences=True, dropout=0.1, #input_shape=(1, 193),
                  recurrent_dropout=0.2))  
-    model.add(GRU(n_dim*2, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
-    model.add(GRU(n_dim, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
+    model.add(LSTM(n_dim*2, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
+    model.add(LSTM(n_dim, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
     model.add(Flatten())
     #model.add(Dense(n_dim, activation='relu'))  
     #model.add(Dropout=0.4)
