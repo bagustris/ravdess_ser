@@ -3,7 +3,7 @@ Speeh emotion recognition using RAVDESS dataset
 contact: bagus@ep.its.ac.id
 
 ### Feature used
-Read the blog above.  
+Read the the following blog (in Indonesian language): https://bagustris.blogspot.com/2019/06/implementasi-pengenalan-emosi-dari.html  
 
 ### Classifier
 Dense (Fully Connected) Vs GRU Vs LSTM
