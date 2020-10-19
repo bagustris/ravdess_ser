@@ -13,3 +13,11 @@ script_name = accuracy x 100%
 ser_ravdess = 0.67  
 ser_ravdess-gru = 0.68  
 ser_ravdess-lstm = 0.70  
+
+### citation
+If you get a benefit from this repo, please cite the following paper:
+```
+B.T. Atmaja and M. Akagi, “On The Differences Between Song and Speech Emotion
+Recognition: Effect of Feature Sets, Feature Types, and Classifiers”, TENCON 2020
+- 2020 IEEE Region 10 Conference (TENCON), Osaka, Japan, 2020.
+``` 
