@@ -21,3 +21,7 @@ B.T. Atmaja and M. Akagi, “On The Differences Between Song and Speech Emotion
 Recognition: Effect of Feature Sets, Feature Types, and Classifiers”, TENCON 2020
 - 2020 IEEE Region 10 Conference (TENCON), Osaka, Japan, 2020.
 ``` 
+
+
+See the my other repo, https://github.com/bagustris/ravdess_song_speech,
+for comparison of speech and song emotion recognition.
