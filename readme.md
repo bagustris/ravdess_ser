@@ -14,7 +14,7 @@ ser_ravdess = 0.67
 ser_ravdess-gru = 0.68  
 ser_ravdess-lstm = 0.70  
 
-### citation
+### Citation
 If you get a benefit from this repo, please cite the following paper:
 ```
 B.T. Atmaja and M. Akagi, “On The Differences Between Song and Speech Emotion
