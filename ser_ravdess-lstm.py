@@ -12,6 +12,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 
+import random as rn
+import tensorflow as tf
+
+np.random.seed(123)
+rn.seed(123)
+tf.set_random_seed(123)
+
 # load feature data
 X=np.load('X.npy')  
 y=np.load('y.npy')
@@ -22,17 +29,17 @@ train_x, test_x, train_y, test_y = train_test_split(X, y, test_size=0.2, random_
 n_dim = train_x.shape[2]  
 n_classes = train_y.shape[1]  
 
-earlystop = EarlyStopping(monitor='val_acc', mode='max', patience=75, restore_best_weights=True)
+earlystop = EarlyStopping(monitor='val_acc', mode='max', patience=100, restore_best_weights=True)
 checkpointer = ModelCheckpoint(filepath='/tmp/weights.hdf5', verbose=1, save_best_only=True)
 
 # function to define model
 def create_model():  
     model = Sequential()
     model.add(BatchNormalization(axis=-1, input_shape=(1, 193)))
-    model.add(GRU(n_dim, return_sequences=True, dropout=0.1, #input_shape=(1, 193),
+    model.add(LSTM(n_dim, return_sequences=True, dropout=0.1, #input_shape=(1, 193),
                  recurrent_dropout=0.2))  
-    model.add(GRU(n_dim*2, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
-    model.add(GRU(n_dim, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
+    model.add(LSTM(n_dim*2, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
+    model.add(LSTM(n_dim, dropout=0.1, recurrent_dropout=0.2, return_sequences=True))
     model.add(Flatten())
     #model.add(Dense(n_dim, activation='relu'))  
     #model.add(Dropout=0.4)
@@ -47,7 +54,7 @@ model = create_model()
 print(model.summary())
 
 # train the model  
-hist = model.fit(train_x, train_y, epochs=50, batch_size=32, 
+hist = model.fit(train_x, train_y, epochs=500, batch_size=32, 
                  validation_data=[test_x[:150], test_y[:150]], callbacks=[earlystop])
 print(max(hist.history['accuracy']), max(hist.history['val_accuracy']))
 # evaluate model, test data may differ from validation data
