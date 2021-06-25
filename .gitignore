@@ -1,0 +1,6 @@
+./*.npy
+*.npy
+*.~
+*.bak
+./.ipynb_checkpoints
+*~
